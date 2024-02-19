@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block main %}
+<div class="contact-form bg-light p-30">
+    <form name="Login" action="{% url "login" %}" method="POST">
+        {% csrf_token %}
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+        {% endif %}
+        <div class="control-group">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+                required="required" data-validation-required-message="Please enter your name" />
+            <p class="help-block text-danger">{{errors.username}}</p>
+        </div>
+        <div class="control-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                required="required" data-validation-required-message="Please enter a subject" />
+            <p class="help-block text-danger">{{errors.password}}</p>
+        </div>
+        <a href="{% url "forgot-password" %}">Forgot Password</a>
+        <div>
+            <button class="btn btn-primary py-2 px-4" type="submit">{% trans "Login" %}</button>
+        </div>
+    </form>
+</div>
+{% endblock main %}

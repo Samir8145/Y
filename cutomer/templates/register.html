@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<div class="contact-form bg-light p-30">
+    <form name="sentMessage" action="{% url "register" %}" method="POST">
+        {% csrf_token %}
+        <div class="control-group">
+            <input type="text" class="form-control" id="username" name="first_name" placeholder="First_name"
+                required="required" data-validation-required-message="Please enter your name" />
+            <p class="help-block text-danger">{{forms_errors.first_name}}</p>
+        </div>
+        <div class="control-group">
+            <input type="text" class="form-control" id="password" name="last_name" placeholder="Last_name"
+                required="required" data-validation-required-message="Please enter a subject" />
+            <p class="help-block text-danger">{{forms_errors.last_name}}</p>
+        </div>
+        <div class="control-group">
+            <input type="text" class="form-control" id="password" name="username" placeholder="Usernmae"
+                required="required" data-validation-required-message="Please enter a subject" />
+            <p class="help-block text-danger">{{forms_errors.username}}</p>
+        <div>
+        <div class="control-group">
+            <input type="text" class="form-control" id="password" name="email" placeholder="Email"
+                required="required" data-validation-required-message="Please enter a subject" />
+            <p class="help-block text-danger">{{forms_errors.eamil}}</p>
+        <div class="control-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                required="required" data-validation-required-message="Please enter a subject" />
+            <p class="help-block text-danger">{{forms_errors.password}}</p>
+        <div class="control-group">
+            <input type="password" class="form-control" id="password" name="password_again" placeholder="Password_again"
+                required="required" data-validation-required-message="Please enter a subject" />
+            <p class="help-block text-danger">{{forms_errors.password_again}}</p>
+            <button class="btn btn-primary py-2 px-4" type="submit">Register</button>
+        </div>
+    </form>
+</div>
+{% endblock main %}
