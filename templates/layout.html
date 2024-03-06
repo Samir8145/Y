@@ -114,15 +114,23 @@
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
+                <form action="{% url "products" %}" method="get">
+                        {% if error %}
+                            <p class="help-block text-danger">{{error}}"></p>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="Search for products">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary py-1 px-3" type="submit">Search</button>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="Search for products">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary py-1 px-3" type="submit">Search</button>
+                                </div>
+                            </div>
+                        {% endif %}
                 </form>
             </div>
             <div class="col-lg-4 col-6 text-right">
@@ -175,8 +183,11 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="{% url "home" %}" class="nav-item nav-link active">{% trans "Home" %}</a>
-                            <a href="{% url "shop" %}" class="nav-item nav-link">{% trans "Shop" %}</a>
+                            {% comment %} {% if  %} {% endcomment %}
+                                <a href="{% url "home" %}" class="nav-item nav-link active">{% trans "Home" %}</a>
+                            {% comment %} {% elif  %} {% endcomment %}
+                                <a href="{% url "shop" %}" class="nav-item nav-link">{% trans "Shop" %}</a>
+                            {% comment %} {% elif  %} {% endcomment %}
                             <div class="nav-item dropdown">
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                     <a href="cart.html" class="dropdown-item">Shopping Cart</a>

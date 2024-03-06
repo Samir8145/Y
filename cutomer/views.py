@@ -3,6 +3,7 @@ from .forms import  RegisterForm
 from django.contrib.auth  import authenticate, login, logout
 from django.contrib.auth.models  import User
 from .models import Customer
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
