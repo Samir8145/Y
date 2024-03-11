@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from os import getenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,14 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-q0-vgpov1kc#c1270tz!53e^cd_ub1n*-g0)$xqg!n8z6^=uc"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = getenv('DEBUG') == True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '192.168.137.1'
-]
-
+ALLOWED_HOSTS = getenv('ALLOWED_HOSTS').split(',')
 
 # Application definition
 
@@ -84,11 +80,10 @@ WSGI_APPLICATION = "ecommerce.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "ecommerce_246",
-        "USER": "postgres",
-        "PASSWORD": "128900",
-        "HOST": "localhost",
-        "PORT": "5432"
+        "NAME": getenv('NAME'),
+        "USER": getenv('USER'),
+        "PASSWORD": getenv('HOST'),
+        "PORT": getenv('PORT')
     }
 }
 
